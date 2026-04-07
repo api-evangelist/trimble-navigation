@@ -1,7 +1,12 @@
 aid: trimble-navigation
-url: https://raw.githubusercontent.com/api-evangelist/trimble-navigation/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/trimble-navigation/refs/heads/main/apis.yml
 modified: '2026-03-24'
 apis: []
 common:
   - type: Website
     url: https://www.trimble-navigation.com
+description: >-
+  Trimble is a global provider of advanced location-based solutions that maximize
+  productivity and enhance profitability across construction, agriculture, transportation,
+  geospatial, and other industries.
