@@ -1,0 +1,98 @@
+extends: spectral:oas
+rules:
+
+  # All operations must have operationId
+  trimble-nav-operation-id-required:
+    description: All operations must have a camelCase operationId
+    message: "Operation is missing operationId"
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: operationId
+      function: truthy
+
+  # Operation IDs must use camelCase
+  trimble-nav-operation-id-camel-case:
+    description: Operation IDs must use camelCase
+    message: "operationId '{{value}}' must use camelCase"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  # API paths must be versioned
+  trimble-nav-versioned-path:
+    description: All API paths must use versioned prefix
+    message: "Path '{{value}}' must start with /api/v1/ or /api/v2/"
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/api/v[12]/"
+
+  # All operations must define a 200 response
+  trimble-nav-response-200-required:
+    description: All operations must define a 200 success response
+    message: "Operation is missing a 200 success response"
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch].responses"
+    then:
+      field: "200"
+      function: truthy
+
+  # All operations must have tags
+  trimble-nav-operation-tags-required:
+    description: All operations must have at least one tag
+    message: "Operation must have at least one tag"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: tags
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 1
+
+  # Basic auth must be used
+  trimble-nav-basic-auth:
+    description: API must use basic auth with computed access code
+    message: "Security scheme must use HTTP basic authentication"
+    severity: warn
+    given: "$.components.securitySchemes[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            type:
+              const: http
+            scheme:
+              const: basic
+
+  # Coordinate fields must use double precision
+  trimble-nav-coordinate-precision:
+    description: Latitude and longitude must use double precision
+    message: "Coordinate field should use format: double for sub-centimeter precision"
+    severity: warn
+    given: "$.components.schemas[*].properties[?(@property == 'latitude' || @property == 'longitude')]"
+    then:
+      field: format
+      function: enumeration
+      functionOptions:
+        values:
+          - double
+
+  # Path parameters must be required
+  trimble-nav-path-params-required:
+    description: Path parameters must be required
+    message: "Path parameter must have required: true"
+    severity: error
+    given: "$.paths[*][*].parameters[?(@.in == 'path')]"
+    then:
+      field: required
+      function: truthy

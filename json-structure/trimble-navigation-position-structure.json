@@ -1,0 +1,43 @@
+{
+  "title": "Trimble Navigation GNSS Position Structure",
+  "description": "Structure documentation for Trimble Mobile Manager GNSS position fixes",
+  "structure": {
+    "latitude": "number (double) — Decimal degrees latitude (WGS84, -90 to +90)",
+    "longitude": "number (double) — Decimal degrees longitude (WGS84, -180 to +180)",
+    "altitude": "number (double) — Height above WGS84 ellipsoid in meters",
+    "speed": "number (float) — Ground speed in m/s",
+    "bearing": "number (float) — Direction of travel 0-360° clockwise from north",
+    "satellites": "integer — Number of satellites used in solution",
+    "hrms": "number (float) — Horizontal accuracy estimate in meters (RMS)",
+    "vrms": "number (float) — Vertical accuracy estimate in meters (RMS)",
+    "pdop": "number (float) — Position Dilution of Precision (lower=better)",
+    "hdop": "number (float) — Horizontal DOP",
+    "vdop": "number (float) — Vertical DOP",
+    "diffStatus": "integer — Solution quality: 1=Autonomous, 2=DGPS, 4=RTK Fixed, 5=RTK Float",
+    "timestamp": "string (ISO 8601 UTC) — GNSS fix time",
+    "satelliteView": {
+      "_type": "array",
+      "_item": {
+        "id": "integer — Satellite PRN or ID number",
+        "elevation": "integer — Degrees above horizon (0-90)",
+        "azimuth": "integer — Azimuth 0-360° clockwise from north",
+        "snr": "number — Signal-to-Noise Ratio in dB-Hz",
+        "used": "boolean — Whether included in position solution",
+        "gnssSystem": "string — Constellation: GPS, GLONASS, Galileo, BeiDou, QZSS, SBAS"
+      }
+    }
+  },
+  "diffStatusValues": {
+    "1": "Autonomous — Standard GPS, no corrections (~3-5m accuracy)",
+    "2": "DGPS — Differential GPS corrections applied (~1-2m accuracy)",
+    "4": "RTK Fixed — Integer ambiguity resolved (~1-3cm accuracy)",
+    "5": "RTK Float — Float solution converging (~0.1-0.5m accuracy)"
+  },
+  "notes": [
+    "All coordinates use WGS84 reference frame by default",
+    "hrms and vrms are RMS (not 2-sigma) accuracy estimates",
+    "DOP values below 2.0 indicate excellent satellite geometry",
+    "RTK Fixed (diffStatus=4) is required for sub-centimeter precision work",
+    "WebSocket v2 includes additional imuOrientation and referenceFrame fields"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/tmmInfo",
+    "headers": {
+      "Authorization": "Basic BASE64_ENCODED_ACCESS_CODE"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "version": "3.5.2",
+      "apiPort": 8080,
+      "v1SocketPort": 8081,
+      "v2SocketPort": 8082,
+      "receiverConnected": true,
+      "platform": "Android"
+    }
+  }
+}

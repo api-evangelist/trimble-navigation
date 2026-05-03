@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/trimble-navigation/main/json-schema/trimble-navigation-position-schema.json",
+  "title": "Trimble Navigation GNSS Position",
+  "description": "A GNSS position fix from a Trimble receiver via Trimble Mobile Manager",
+  "type": "object",
+  "required": ["latitude", "longitude", "timestamp"],
+  "properties": {
+    "latitude": {
+      "type": "number",
+      "format": "double",
+      "minimum": -90,
+      "maximum": 90,
+      "description": "Latitude in decimal degrees (WGS84)"
+    },
+    "longitude": {
+      "type": "number",
+      "format": "double",
+      "minimum": -180,
+      "maximum": 180,
+      "description": "Longitude in decimal degrees (WGS84)"
+    },
+    "altitude": {
+      "type": "number",
+      "format": "double",
+      "description": "Height above WGS84 ellipsoid in meters"
+    },
+    "speed": {
+      "type": "number",
+      "format": "float",
+      "minimum": 0,
+      "description": "Ground speed in meters per second"
+    },
+    "bearing": {
+      "type": "number",
+      "format": "float",
+      "minimum": 0,
+      "maximum": 360,
+      "description": "Direction of travel in degrees from north (clockwise)"
+    },
+    "satellites": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of satellites tracked in the position solution"
+    },
+    "hrms": {
+      "type": "number",
+      "format": "float",
+      "minimum": 0,
+      "description": "Horizontal Root Mean Square accuracy in meters"
+    },
+    "vrms": {
+      "type": "number",
+      "format": "float",
+      "minimum": 0,
+      "description": "Vertical Root Mean Square accuracy in meters"
+    },
+    "pdop": {
+      "type": "number",
+      "format": "float",
+      "minimum": 0,
+      "description": "Position Dilution of Precision"
+    },
+    "hdop": {
+      "type": "number",
+      "format": "float",
+      "minimum": 0,
+      "description": "Horizontal Dilution of Precision"
+    },
+    "vdop": {
+      "type": "number",
+      "format": "float",
+      "minimum": 0,
+      "description": "Vertical Dilution of Precision"
+    },
+    "diffStatus": {
+      "type": "integer",
+      "enum": [1, 2, 4, 5],
+      "description": "GNSS solution type: 1=Autonomous, 2=DGPS, 4=RTK Fixed, 5=RTK Float"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "GNSS position timestamp in UTC (ISO 8601)"
+    },
+    "satelliteView": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/SatelliteInfo" }
+    }
+  },
+  "definitions": {
+    "SatelliteInfo": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer" },
+        "elevation": { "type": "integer", "minimum": 0, "maximum": 90 },
+        "azimuth": { "type": "integer", "minimum": 0, "maximum": 360 },
+        "snr": { "type": "number", "format": "float" },
+        "used": { "type": "boolean" },
+        "gnssSystem": { "type": "string", "enum": ["GPS", "GLONASS", "Galileo", "BeiDou", "QZSS", "SBAS"] }
+      }
+    }
+  }
+}

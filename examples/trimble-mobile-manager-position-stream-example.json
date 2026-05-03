@@ -1,0 +1,64 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/api/v1/positionStream?format=locationV2",
+    "headers": {
+      "Authorization": "Basic BASE64_ENCODED_ACCESS_CODE"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "port": 8082,
+      "format": "locationV2"
+    }
+  },
+  "websocket": {
+    "url": "ws://localhost:8082",
+    "note": "Connect to this WebSocket to receive real-time GNSS positions",
+    "sampleMessage": {
+      "latitude": 37.3861,
+      "longitude": -122.0839,
+      "altitude": 32.45,
+      "speed": 0.02,
+      "bearing": 0.0,
+      "satellites": 18,
+      "hrms": 0.012,
+      "vrms": 0.025,
+      "pdop": 1.2,
+      "hdop": 0.8,
+      "vdop": 0.9,
+      "diffStatus": 4,
+      "timestamp": "2026-05-03T10:30:00Z",
+      "satelliteView": [
+        {
+          "id": 5,
+          "elevation": 72,
+          "azimuth": 165,
+          "snr": 48.5,
+          "used": true,
+          "gnssSystem": "GPS"
+        },
+        {
+          "id": 12,
+          "elevation": 45,
+          "azimuth": 280,
+          "snr": 44.2,
+          "used": true,
+          "gnssSystem": "GPS"
+        }
+      ],
+      "imuOrientation": {
+        "pitch": 0.5,
+        "roll": -0.2,
+        "yaw": 182.3,
+        "aligned": true
+      },
+      "referenceFrame": {
+        "sourceFrame": "WGS84",
+        "targetFrame": "NAD83",
+        "epoch": 2026.34
+      }
+    }
+  }
+}

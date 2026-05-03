@@ -1,0 +1,119 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "trimble-nav": "https://www.trimble.com/vocab/navigation/",
+
+    "GnssPosition": "sosa:Observation",
+    "Receiver": "trimble-nav:Receiver",
+    "SatelliteInfo": "trimble-nav:SatelliteInfo",
+    "CatalystLicense": "trimble-nav:CatalystLicense",
+
+    "latitude": {
+      "@id": "geo:lat",
+      "@type": "xsd:double"
+    },
+    "longitude": {
+      "@id": "geo:long",
+      "@type": "xsd:double"
+    },
+    "altitude": {
+      "@id": "geo:alt",
+      "@type": "xsd:double"
+    },
+    "speed": {
+      "@id": "schema:speed",
+      "@type": "xsd:float"
+    },
+    "bearing": {
+      "@id": "trimble-nav:bearing",
+      "@type": "xsd:float"
+    },
+    "satellites": {
+      "@id": "trimble-nav:satellites",
+      "@type": "xsd:integer"
+    },
+    "hrms": {
+      "@id": "trimble-nav:hrms",
+      "@type": "xsd:float"
+    },
+    "vrms": {
+      "@id": "trimble-nav:vrms",
+      "@type": "xsd:float"
+    },
+    "pdop": {
+      "@id": "trimble-nav:pdop",
+      "@type": "xsd:float"
+    },
+    "hdop": {
+      "@id": "trimble-nav:hdop",
+      "@type": "xsd:float"
+    },
+    "vdop": {
+      "@id": "trimble-nav:vdop",
+      "@type": "xsd:float"
+    },
+    "diffStatus": {
+      "@id": "trimble-nav:diffStatus",
+      "@type": "xsd:integer"
+    },
+    "timestamp": {
+      "@id": "sosa:resultTime",
+      "@type": "xsd:dateTime"
+    },
+    "satelliteView": {
+      "@id": "trimble-nav:satelliteView",
+      "@container": "@list"
+    },
+
+    "model": {
+      "@id": "schema:model",
+      "@type": "xsd:string"
+    },
+    "serialNumber": {
+      "@id": "schema:serialNumber",
+      "@type": "xsd:string"
+    },
+    "firmwareVersion": {
+      "@id": "schema:softwareVersion",
+      "@type": "xsd:string"
+    },
+    "connectionType": {
+      "@id": "trimble-nav:connectionType",
+      "@type": "xsd:string"
+    },
+
+    "gnssSystem": {
+      "@id": "trimble-nav:gnssSystem",
+      "@type": "xsd:string"
+    },
+    "elevation": {
+      "@id": "trimble-nav:elevation",
+      "@type": "xsd:integer"
+    },
+    "azimuth": {
+      "@id": "trimble-nav:azimuth",
+      "@type": "xsd:integer"
+    },
+    "snr": {
+      "@id": "trimble-nav:snr",
+      "@type": "xsd:float"
+    },
+    "used": {
+      "@id": "trimble-nav:used",
+      "@type": "xsd:boolean"
+    },
+
+    "version": {
+      "@id": "schema:version",
+      "@type": "xsd:string"
+    },
+    "platform": {
+      "@id": "schema:operatingSystem",
+      "@type": "xsd:string"
+    }
+  }
+}

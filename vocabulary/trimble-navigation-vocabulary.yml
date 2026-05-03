@@ -1,0 +1,91 @@
+vocabulary:
+  name: Trimble Navigation Vocabulary
+  description: >-
+    Domain vocabulary for Trimble Navigation (Trimble Inc.) GPS, GNSS, and positioning
+    technology APIs. Covers precise positioning, satellite navigation, correction
+    services, and receiver hardware terminology as used in the Trimble Mobile Manager API.
+  version: "1.0.0"
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+domains:
+  - name: GNSS Technology
+    description: Global Navigation Satellite System core concepts
+    terms:
+      - term: GNSS
+        definition: Global Navigation Satellite System — the umbrella term for satellite-based navigation systems including GPS, GLONASS, Galileo, and BeiDou
+        synonyms: [GPS, satellite navigation, satnav]
+      - term: GPS
+        definition: Global Positioning System — the US GNSS constellation of 24+ satellites providing global positioning
+        synonyms: [GNSS, Global Positioning System]
+      - term: RTK
+        definition: Real-Time Kinematic — a technique using carrier-phase measurements and base station corrections to achieve centimeter-level positioning accuracy
+        synonyms: [Real-Time Kinematic, RTK GPS, kinematic positioning]
+      - term: RTX
+        definition: Real-Time Extended — Trimble's proprietary satellite-delivered correction service delivering sub-decimeter accuracy globally without a base station
+        synonyms: [CenterPoint RTX, Trimble RTX, precise point positioning]
+      - term: SBAS
+        definition: Satellite-Based Augmentation System — wide-area differential corrections broadcast from satellites (WAAS, EGNOS, MSAS) for sub-meter accuracy
+        synonyms: [WAAS, EGNOS, MSAS, wide-area corrections]
+      - term: NTRIP
+        definition: Networked Transport of RTCM via Internet Protocol — standard for streaming differential corrections via internet to GNSS receivers
+        synonyms: [NTRIP corrections, RTK network, VRS corrections]
+      - term: DOP
+        definition: Dilution of Precision — a measure of satellite geometry quality. Lower values indicate better geometry. PDOP (Position), HDOP (Horizontal), VDOP (Vertical).
+        synonyms: [Dilution of Precision, PDOP, HDOP, VDOP]
+
+  - name: Position Accuracy
+    description: Concepts relating to positioning accuracy and solution quality
+    terms:
+      - term: HRMS
+        definition: Horizontal Root Mean Square — the statistical measure of horizontal position accuracy in meters
+        synonyms: [horizontal accuracy, CEP, circular error probable]
+      - term: VRMS
+        definition: Vertical Root Mean Square — the statistical measure of vertical position accuracy in meters
+        synonyms: [vertical accuracy]
+      - term: diffStatus
+        definition: >-
+          A numeric code indicating the type of GNSS solution:
+          1=Autonomous (no corrections), 2=DGPS, 4=RTK Fixed (centimeter), 5=RTK Float (decimeter)
+        synonyms: [solution type, fix quality, position mode]
+      - term: RTK Fixed
+        definition: The highest-quality RTK solution where integer carrier-phase ambiguities are resolved, yielding 1-3cm accuracy
+        synonyms: [fixed solution, integer fix, centimeter accuracy]
+      - term: RTK Float
+        definition: An RTK solution where integer ambiguities have not yet been fully resolved, yielding decimeter-level accuracy
+        synonyms: [float solution, converging RTK]
+
+  - name: Receiver Hardware
+    description: Trimble GNSS receiver hardware terminology
+    terms:
+      - term: Trimble Catalyst
+        definition: A subscription-based GNSS positioning service using the Catalyst DA2 antenna and smartphone processing to deliver scalable accuracy levels (sub-meter, sub-foot, decimeter, centimeter)
+        synonyms: [Catalyst DA2, Catalyst On Demand]
+      - term: Trimble R-Series
+        definition: Trimble's professional GNSS receiver line including R580, R780, R12i, and R980 — survey-grade receivers for GIS, construction, and precision agriculture
+        synonyms: [R12i, R780, R580, R980]
+      - term: Bluetooth Receiver
+        definition: A GNSS receiver connected to a mobile device via Bluetooth for high-accuracy positioning in survey or data collection workflows
+        synonyms: [external receiver, Bluetooth GPS]
+      - term: TIP
+        definition: Trimble Integrated Position — a patented technology available on select Trimble receivers that combines GNSS and inertial measurement for improved positioning in challenging environments
+        synonyms: [Trimble Integrated Position, IMU-assisted GPS]
+
+  - name: Developer API
+    description: Trimble Mobile Manager developer integration concepts
+    terms:
+      - term: TMM
+        definition: Trimble Mobile Manager — a mobile application providing a REST API and WebSocket interface for integrating Trimble GNSS receivers into third-party applications
+        synonyms: [Trimble Mobile Manager, TMM-API]
+      - term: Access Code
+        definition: A time-limited authentication credential (valid for 1 second) generated by SHA256-hashing the application ID and current UTC time, required for TMM REST API calls
+        synonyms: [auth token, access token, HMAC key]
+      - term: WebSocket Position Stream
+        definition: A WebSocket connection to localhost that delivers continuous real-time GNSS position data in JSON format from the connected Trimble receiver
+        synonyms: [position stream, GNSS stream, real-time position feed]
+      - term: Position Stream V1
+        definition: Basic WebSocket position format with core GNSS fields accessible to any application on the device
+        synonyms: [v1SocketPort, basic position, locationV1]
+      - term: Position Stream V2
+        definition: Extended WebSocket position format with IMU orientation, TIP positions, and reference frame data — requires registered application access
+        synonyms: [v2SocketPort, extended position, locationV2]
