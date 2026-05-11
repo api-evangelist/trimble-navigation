@@ -106,6 +106,8 @@ common:
     url: https://developer.trimble.com/docs/mobile-manager/
   - type: GettingStarted
     url: https://developer.trimble.com/docs/mobile-manager/guides/integrate/
+  - type: Integrations
+    url: https://www.trimble.com/en/partners
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
