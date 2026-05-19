@@ -1,0 +1,71 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Trimble Mobile Manager API — System
+  description: 'Trimble Mobile Manager API — System. 1 operations. Lead operation: Get TMM System Information. Self-contained
+    Naftiko capability covering one Trimble Navigation business surface.'
+  tags:
+  - Trimble Navigation
+  - System
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRIMBLE_NAVIGATION_API_KEY: TRIMBLE_NAVIGATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: trimble-mobile-manager-system
+    baseUri: http://localhost:{apiPort}
+    description: Trimble Mobile Manager API — System business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-tmmInfo
+      path: /api/v1/tmmInfo
+      operations:
+      - name: gettmminfo
+        method: GET
+        description: Get TMM System Information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.TRIMBLE_NAVIGATION_USER}}'
+      password: '{{env.TRIMBLE_NAVIGATION_PASS}}'
+  exposes:
+  - type: rest
+    namespace: trimble-mobile-manager-system-rest
+    port: 8080
+    description: REST adapter for Trimble Mobile Manager API — System. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v1/tmminfo
+      name: api-v1-tmminfo
+      description: REST surface for api-v1-tmmInfo.
+      operations:
+      - method: GET
+        name: gettmminfo
+        description: Get TMM System Information
+        call: trimble-mobile-manager-system.gettmminfo
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: trimble-mobile-manager-system-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Trimble Mobile Manager API — System. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-tmm-system-information
+      description: Get TMM System Information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: trimble-mobile-manager-system.gettmminfo
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,113 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Trimble Mobile Manager API — Corrections
+  description: 'Trimble Mobile Manager API — Corrections. 2 operations. Lead operation: Configure Corrections. Self-contained
+    Naftiko capability covering one Trimble Navigation business surface.'
+  tags:
+  - Trimble Navigation
+  - Corrections
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRIMBLE_NAVIGATION_API_KEY: TRIMBLE_NAVIGATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: trimble-mobile-manager-corrections
+    baseUri: http://localhost:{apiPort}
+    description: Trimble Mobile Manager API — Corrections business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-corrections-configure
+      path: /api/v1/corrections/configure
+      operations:
+      - name: configurecorrections
+        method: POST
+        description: Configure Corrections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v1-corrections-status
+      path: /api/v1/corrections/status
+      operations:
+      - name: getcorrectionsstatus
+        method: GET
+        description: Get Corrections Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.TRIMBLE_NAVIGATION_USER}}'
+      password: '{{env.TRIMBLE_NAVIGATION_PASS}}'
+  exposes:
+  - type: rest
+    namespace: trimble-mobile-manager-corrections-rest
+    port: 8080
+    description: REST adapter for Trimble Mobile Manager API — Corrections. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v1/corrections/configure
+      name: api-v1-corrections-configure
+      description: REST surface for api-v1-corrections-configure.
+      operations:
+      - method: POST
+        name: configurecorrections
+        description: Configure Corrections
+        call: trimble-mobile-manager-corrections.configurecorrections
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/corrections/status
+      name: api-v1-corrections-status
+      description: REST surface for api-v1-corrections-status.
+      operations:
+      - method: GET
+        name: getcorrectionsstatus
+        description: Get Corrections Status
+        call: trimble-mobile-manager-corrections.getcorrectionsstatus
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: trimble-mobile-manager-corrections-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Trimble Mobile Manager API — Corrections. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: configure-corrections
+      description: Configure Corrections
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: trimble-mobile-manager-corrections.configurecorrections
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-corrections-status
+      description: Get Corrections Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: trimble-mobile-manager-corrections.getcorrectionsstatus
+      outputParameters:
+      - type: object
+        mapping: $.
