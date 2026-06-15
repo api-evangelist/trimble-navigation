@@ -1,0 +1,161 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trimble Mobile Manager API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get TMM System Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:{apiPort}/api/v1/tmmInfo"
+          },
+          "docs": "Retrieve system information about the connected Trimble Mobile Manager instance, including the API port, WebSocket ports, connected receiver details, and version information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Positioning",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start Position Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:{apiPort}/api/v1/positionStream",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Position data format version. locationV2 includes extended fields for IMU orientation, TIP positions, and reference frame data."
+              }
+            ]
+          },
+          "docs": "Initiates position streaming from the connected GNSS receiver. Returns the WebSocket port number for connecting to the position stream. After calling this endpoint, open a WebSocket connection to ws://localhost:{port} to receive real-time GNSS position data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Receiver",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Receiver Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:{apiPort}/api/v1/receiver/info"
+          },
+          "docs": "Returns information about the currently connected GNSS receiver including model, serial number, firmware version, and connection status."
+        },
+        {
+          "info": {
+            "name": "Get Receiver Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:{apiPort}/api/v1/receiver/status"
+          },
+          "docs": "Returns current status of the connected GNSS receiver."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Corrections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Corrections Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:{apiPort}/api/v1/corrections/status"
+          },
+          "docs": "Returns the current status of GNSS correction services being applied to the receiver (e.g., RTX, RTK, SBAS)."
+        },
+        {
+          "info": {
+            "name": "Configure Corrections",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:{apiPort}/api/v1/corrections/configure",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configure the GNSS correction source for the connected receiver. Supports CenterPoint RTX, SBAS, and custom NTRIP mountpoints."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Catalyst",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Catalyst Licenses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:{apiPort}/api/v1/catalyst/licenses"
+          },
+          "docs": "Returns available Trimble Catalyst licenses for the connected DA2 receiver."
+        },
+        {
+          "info": {
+            "name": "Activate Catalyst License",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:{apiPort}/api/v1/catalyst/licenses/activate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Activate a Trimble Catalyst On Demand license to enable precision corrections for the DA2 receiver."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

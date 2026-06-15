@@ -1,0 +1,1133 @@
+{
+  "item": [
+    {
+      "id": "9fe81683-8ae0-4cb6-afa0-1a0750afe0b2",
+      "name": "System",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "46996c13-56b1-4d4d-a914-99a6c57e369c",
+          "name": "Get TMM System Information",
+          "request": {
+            "name": "Get TMM System Information",
+            "description": {
+              "content": "Retrieve system information about the connected Trimble Mobile Manager instance, including the API port, WebSocket ports, connected receiver details, and version information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tmmInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "API port returned by tmmInfo endpoint",
+                  "type": "any",
+                  "value": "{{apiPort}}",
+                  "key": "apiPort"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2f8e02c1-38a6-4d03-bc9d-da5bf6621db7",
+              "name": "TMM system information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tmmInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API port returned by tmmInfo endpoint",
+                      "type": "any",
+                      "value": "{{apiPort}}",
+                      "key": "apiPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"apiPort\": 3337,\n  \"v1SocketPort\": 3729,\n  \"v2SocketPort\": 3607,\n  \"receiverConnected\": true,\n  \"platform\": \"Android\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afe545cd-f9ce-4fd4-a72e-24f447490771",
+              "name": "Unauthorized - invalid access code",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tmmInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API port returned by tmmInfo endpoint",
+                      "type": "any",
+                      "value": "{{apiPort}}",
+                      "key": "apiPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "675d0400-8278-4eda-8a74-76254affc58e",
+      "name": "Positioning",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "87840d4e-3ce7-47a7-b008-84cade91fd0a",
+          "name": "Start Position Stream",
+          "request": {
+            "name": "Start Position Stream",
+            "description": {
+              "content": "Initiates position streaming from the connected GNSS receiver. Returns the WebSocket port number for connecting to the position stream. After calling this endpoint, open a WebSocket connection to ws://localhost:{port} to receive real-time GNSS position data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "positionStream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "locationV2",
+                  "description": "Position data format version. locationV2 includes extended fields for IMU orientation, TIP positions, and reference frame data."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "API port returned by tmmInfo endpoint",
+                  "type": "any",
+                  "value": "{{apiPort}}",
+                  "key": "apiPort"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ed2f33a-67e2-4f89-a522-2e76d2696d6c",
+              "name": "WebSocket port for position stream",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "positionStream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "locationV2"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "API port returned by tmmInfo endpoint",
+                      "type": "any",
+                      "value": "{{apiPort}}",
+                      "key": "apiPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"port\": 7043,\n  \"format\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27ecd613-45f0-4acb-bb13-c14449dc8ad8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "positionStream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "locationV2"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "API port returned by tmmInfo endpoint",
+                      "type": "any",
+                      "value": "{{apiPort}}",
+                      "key": "apiPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7f813193-cfd1-4caa-82d6-8f4f19df7e69",
+      "name": "Receiver",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "07b19219-0755-4635-bbaf-92224683696b",
+          "name": "Get Receiver Information",
+          "request": {
+            "name": "Get Receiver Information",
+            "description": {
+              "content": "Returns information about the currently connected GNSS receiver including model, serial number, firmware version, and connection status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "receiver",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "API port returned by tmmInfo endpoint",
+                  "type": "any",
+                  "value": "{{apiPort}}",
+                  "key": "apiPort"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6bab34dc-413d-4861-b68a-ec779f9f561a",
+              "name": "Receiver information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "receiver",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API port returned by tmmInfo endpoint",
+                      "type": "any",
+                      "value": "{{apiPort}}",
+                      "key": "apiPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"model\": \"string\",\n  \"serialNumber\": \"string\",\n  \"firmwareVersion\": \"string\",\n  \"connectionType\": \"WiFi\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f4da9a6-a917-41ec-abe4-3ccd807c0d86",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "receiver",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API port returned by tmmInfo endpoint",
+                      "type": "any",
+                      "value": "{{apiPort}}",
+                      "key": "apiPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "646938a6-9fbb-4fa1-afed-850d9cbcf29e",
+          "name": "Get Receiver Status",
+          "request": {
+            "name": "Get Receiver Status",
+            "description": {
+              "content": "Returns current status of the connected GNSS receiver.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "receiver",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "API port returned by tmmInfo endpoint",
+                  "type": "any",
+                  "value": "{{apiPort}}",
+                  "key": "apiPort"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58ccaa79-d161-430b-9a3a-df8ee34523da",
+              "name": "Receiver status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "receiver",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API port returned by tmmInfo endpoint",
+                      "type": "any",
+                      "value": "{{apiPort}}",
+                      "key": "apiPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connected\": true,\n  \"batteryLevel\": 3321,\n  \"gnssSignalStrength\": \"Good\",\n  \"trackingGnss\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4b2b2b4f-1324-404a-a9a5-4be36adfc0b7",
+      "name": "Corrections",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "51e4baf5-9be2-4fa7-b929-99464f6f0d69",
+          "name": "Get Corrections Status",
+          "request": {
+            "name": "Get Corrections Status",
+            "description": {
+              "content": "Returns the current status of GNSS correction services being applied to the receiver (e.g., RTX, RTK, SBAS).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "corrections",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "API port returned by tmmInfo endpoint",
+                  "type": "any",
+                  "value": "{{apiPort}}",
+                  "key": "apiPort"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c568defb-269a-4daf-95fe-c32de63e3e8c",
+              "name": "Corrections status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "corrections",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API port returned by tmmInfo endpoint",
+                      "type": "any",
+                      "value": "{{apiPort}}",
+                      "key": "apiPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"RTK\",\n  \"status\": \"Connecting\",\n  \"accuracy\": \"string\",\n  \"provider\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6868933f-ac75-402c-9121-8c1c4e9878ea",
+          "name": "Configure Corrections",
+          "request": {
+            "name": "Configure Corrections",
+            "description": {
+              "content": "Configure the GNSS correction source for the connected receiver. Supports CenterPoint RTX, SBAS, and custom NTRIP mountpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "corrections",
+                "configure"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "API port returned by tmmInfo endpoint",
+                  "type": "any",
+                  "value": "{{apiPort}}",
+                  "key": "apiPort"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"ntripHost\": \"<string>\",\n  \"ntripPort\": \"<integer>\",\n  \"ntripMountpoint\": \"<string>\",\n  \"ntripUsername\": \"<string>\",\n  \"ntripPassword\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b2cf5f7c-a63e-4711-9c7f-f079c04d7377",
+              "name": "Corrections configured",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "corrections",
+                    "configure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API port returned by tmmInfo endpoint",
+                      "type": "any",
+                      "value": "{{apiPort}}",
+                      "key": "apiPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"ntripHost\": \"<string>\",\n  \"ntripPort\": \"<integer>\",\n  \"ntripMountpoint\": \"<string>\",\n  \"ntripUsername\": \"<string>\",\n  \"ntripPassword\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"RTK\",\n  \"status\": \"Connecting\",\n  \"accuracy\": \"string\",\n  \"provider\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35720385-5b62-4f22-ba45-28ff62836c25",
+              "name": "Invalid configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "corrections",
+                    "configure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API port returned by tmmInfo endpoint",
+                      "type": "any",
+                      "value": "{{apiPort}}",
+                      "key": "apiPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"ntripHost\": \"<string>\",\n  \"ntripPort\": \"<integer>\",\n  \"ntripMountpoint\": \"<string>\",\n  \"ntripUsername\": \"<string>\",\n  \"ntripPassword\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "10cc8927-e844-4eef-a6de-82c2cc8a64ca",
+      "name": "Catalyst",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "48a11e96-fdee-412e-879a-e352e5bb768a",
+          "name": "Get Catalyst Licenses",
+          "request": {
+            "name": "Get Catalyst Licenses",
+            "description": {
+              "content": "Returns available Trimble Catalyst licenses for the connected DA2 receiver.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "catalyst",
+                "licenses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "API port returned by tmmInfo endpoint",
+                  "type": "any",
+                  "value": "{{apiPort}}",
+                  "key": "apiPort"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72a2781a-f2c7-4334-9c6a-9b499ca806b1",
+              "name": "Available Catalyst licenses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "catalyst",
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API port returned by tmmInfo endpoint",
+                      "type": "any",
+                      "value": "{{apiPort}}",
+                      "key": "apiPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"type\": \"Sub-Foot\",\n    \"status\": \"Expired\",\n    \"expiresAt\": \"2006-03-04T03:57:56.199Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"type\": \"Decimeter\",\n    \"status\": \"Available\",\n    \"expiresAt\": \"2023-04-18T05:13:53.236Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21ae48be-c6cb-4cb8-a412-bd355c06da99",
+          "name": "Activate Catalyst License",
+          "request": {
+            "name": "Activate Catalyst License",
+            "description": {
+              "content": "Activate a Trimble Catalyst On Demand license to enable precision corrections for the DA2 receiver.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "catalyst",
+                "licenses",
+                "activate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "API port returned by tmmInfo endpoint",
+                  "type": "any",
+                  "value": "{{apiPort}}",
+                  "key": "apiPort"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"licenseId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ebfb840c-4ddd-4095-8e76-de084c022bd3",
+              "name": "License activated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "catalyst",
+                    "licenses",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API port returned by tmmInfo endpoint",
+                      "type": "any",
+                      "value": "{{apiPort}}",
+                      "key": "apiPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"licenseId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "API port returned by tmmInfo endpoint",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "8080",
+      "key": "apiPort"
+    },
+    {
+      "type": "string",
+      "value": "http://localhost:{{apiPort}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a326c784-1074-40bf-a255-17dd65201fb3",
+    "name": "Trimble Mobile Manager API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Trimble Mobile Manager (TMM) API provides developer interfaces for integrating high-accuracy GNSS positioning from connected Trimble receivers into custom mobile applications. Offers a local REST API for system information and WebSocket stream initiation, plus real-time GNSS position delivery via WebSocket. Supports Trimble Catalyst DA2, R580, R780, R12i, R980, and SP100 receivers. Runs locally on Android or iOS devices where Trimble Mobile Manager is installed.",
+      "type": "text/plain"
+    }
+  }
+}

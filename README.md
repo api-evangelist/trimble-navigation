@@ -1,101 +1,84 @@
-# Trimble Navigation
+# Trimble Navigation (trimble-navigation)
 
-Trimble Navigation Limited (now Trimble Inc.) is a global technology company founded in 1978 that pioneered commercial GPS technology. Trimble develops positioning, navigation, and geospatial solutions spanning construction, agriculture, transportation, and surveying industries. Its developer APIs cover GPS/GNSS positioning through Trimble Mobile Manager, high-accuracy survey integration via the Trimble Precision SDK, and geospatial data services. The positioning technology integrates GPS, laser, optical, and inertial technologies to deliver centimeter-level accuracy for professional applications.
+Trimble Navigation Limited (now Trimble Inc.) is a global technology company founded in 1978 that pioneered commercial GPS technology. Trimble develops positioning, navigation, and geospatial solutions spanning construction, agriculture, transportation, and surveying industries. The company rebranded from Trimble Navigation Limited to Trimble Inc. in 2016. Its developer APIs cover GPS/GNSS positioning through Trimble Mobile Manager, high-accuracy survey integration via the Trimble Precision SDK, and geospatial data services. The positioning technology integrates GPS, laser, optical, and inertial technologies to deliver centimeter-level accuracy for professional applications.
 
-**URL:** [View APIs.yml](https://raw.githubusercontent.com/api-evangelist/trimble-navigation/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/trimble-navigation/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/trimble-navigation/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Type:** Index
+
+## Tags
+
+- GPS
+- GNSS
+- Positioning
+- Navigation
+- Surveying
+- Geospatial
+- Construction
 
 ## Timestamps
 
 - **Created:** 2026-05-03
-- **Modified:** 2026-05-03
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Trimble Mobile Manager API
 
-Local REST API and WebSocket interface for integrating high-accuracy GNSS positioning from connected Trimble receivers into custom mobile applications.
+The Trimble Mobile Manager (TMM) API provides developer interfaces for integrating high-accuracy GNSS positioning from connected Trimble receivers into custom mobile applications. Offers a local REST API for configuration and a WebSocket stream for real-time GNSS position delivery. Supports Trimble Catalyst DA2, R580, R780, R12i, R980, and SP100 receivers. Abstracts receiver hardware to enable forward-compatible precision positioning apps.
 
-**Human URL:** [https://developer.trimble.com/docs/mobile-manager/](https://developer.trimble.com/docs/mobile-manager/)
+- **Human URL:** [https://developer.trimble.com/docs/mobile-manager/](https://developer.trimble.com/docs/mobile-manager/)
 
 #### Tags
 
-- GPS, GNSS, Positioning, Surveying, Mobile, WebSocket
+- GPS
+- GNSS
+- Positioning
+- Surveying
+- Mobile
+- WebSocket
 
 #### Properties
 
 - [Documentation](https://developer.trimble.com/docs/mobile-manager/)
 - [Getting Started](https://developer.trimble.com/docs/mobile-manager/guides/integrate/)
-- [OpenAPI](openapi/trimble-mobile-manager-openapi.yml)
+- [OpenAPI](openapi/trimble-mobile-manager-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/trimble-mobile-manager.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/trimble-mobile-manager.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Trimble Positioning Services API
 
-REST-based eCommerce API for purchasing and managing Trimble RTX correction service subscriptions.
+The Trimble Advanced Positioning (TAP) Store API is a REST-based eCommerce API for purchasing and managing Trimble positioning service subscriptions including RTX correction services. Enables automated provisioning of high-accuracy correction subscriptions for fleet and field deployments.
 
-**Human URL:** [https://www.trimble.com/en/developer/docs](https://www.trimble.com/en/developer/docs)
+- **Human URL:** [https://www.trimble.com/en/developer/docs](https://www.trimble.com/en/developer/docs)
 
-## OpenAPI Specifications
+#### Tags
 
-| Specification | Description |
-|---|---|
-| [Trimble Mobile Manager API](openapi/trimble-mobile-manager-openapi.yml) | Full TMM API covering system info, position streaming, receiver management, corrections, and Catalyst licenses |
+- GPS
+- GNSS Corrections
+- RTX
+- Positioning Services
+- Subscriptions
 
-## Spectral Rules
+#### Properties
 
-| Ruleset | Description |
-|---|---|
-| [Trimble Mobile Manager Rules](rules/trimble-mobile-manager-rules.yml) | Spectral ruleset enforcing Trimble Navigation API conventions |
+- [Documentation](https://www.trimble.com/en/developer/docs)
+- [Postman Collection](collections/trimble-mobile-manager.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/trimble-mobile-manager.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-## Naftiko Capabilities
+## Common Properties
 
-### Shared Definitions
-
-| File | Description |
-|---|---|
-| [capabilities/shared/trimble-mobile-manager.yaml](capabilities/shared/trimble-mobile-manager.yaml) | Per-API consumed definition for Trimble Mobile Manager |
-
-### Workflow Capabilities
-
-| Capability | Description |
-|---|---|
-| [capabilities/gnss-positioning.yaml](capabilities/gnss-positioning.yaml) | GNSS positioning workflow: system info, position streaming, receiver management, corrections, Catalyst licenses (8 tools) |
-
-## JSON Schema
-
-| Schema | Description |
-|---|---|
-| [json-schema/trimble-navigation-position-schema.json](json-schema/trimble-navigation-position-schema.json) | JSON Schema for GNSS position fix entities |
-
-## JSON Structure
-
-| Structure | Description |
-|---|---|
-| [json-structure/trimble-navigation-position-structure.json](json-structure/trimble-navigation-position-structure.json) | Structure documentation for GNSS position data |
-
-## JSON-LD Context
-
-| Context | Description |
-|---|---|
-| [json-ld/trimble-navigation-context.jsonld](json-ld/trimble-navigation-context.jsonld) | JSON-LD context mapping Trimble Navigation vocabulary to W3C GEO, SOSA, and schema.org |
-
-## Examples
-
-| Example | Description |
-|---|---|
-| [examples/trimble-mobile-manager-get-tmm-info-example.json](examples/trimble-mobile-manager-get-tmm-info-example.json) | Get TMM system info |
-| [examples/trimble-mobile-manager-position-stream-example.json](examples/trimble-mobile-manager-position-stream-example.json) | Start GNSS position streaming with sample WebSocket message |
-
-## Vocabulary
-
-| File | Description |
-|---|---|
-| [vocabulary/trimble-navigation-vocabulary.yml](vocabulary/trimble-navigation-vocabulary.yml) | Domain vocabulary for GPS, GNSS, and positioning technology |
-
-## Common Links
-
-- **Website:** [https://www.trimble.com](https://www.trimble.com)
-- **Developer Portal:** [https://www.trimble.com/en/developer/docs](https://www.trimble.com/en/developer/docs)
-- **Mobile Manager Docs:** [https://developer.trimble.com/docs/mobile-manager/](https://developer.trimble.com/docs/mobile-manager/)
+- [GitHub Organization](https://github.com/trimble-oss)
+- [LinkedIn](https://www.linkedin.com/company/trimble-navigation)
+- [Website](https://www.trimble.com)
+- [Developer Portal](https://www.trimble.com/en/developer/docs)
+- [Documentation](https://developer.trimble.com/docs/mobile-manager/)
+- [Getting Started](https://developer.trimble.com/docs/mobile-manager/guides/integrate/)
+- [Integrations](https://www.trimble.com/en/partners)
 
 ## Maintainers
 
-- **Kin Lane** - kin@apievangelist.com
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com
