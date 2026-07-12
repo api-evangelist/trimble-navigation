@@ -90,6 +90,12 @@ solutions:
   - Agricultural technology companies integrating high-accuracy positioning
   - Construction technology developers requiring centimeter GPS
 common:
+  - type: TrustCenter
+    url: security/trimble-navigation-trust-center.yml
+  - type: DomainSecurity
+    url: security/trimble-navigation-domain-security.yml
+  - type: Authentication
+    url: authentication/trimble-navigation-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/trimble-oss
   - type: LinkedIn

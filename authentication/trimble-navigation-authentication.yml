@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/trimble-mobile-manager-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: Access code generated using SHA256 hash of (applicationId + currentUTCTime),
+    Base64 encoded. Valid for 1 second only. Must be regenerated per request.
+  sources:
+  - openapi/trimble-mobile-manager-openapi.yml
