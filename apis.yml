@@ -90,6 +90,8 @@ solutions:
   - Agricultural technology companies integrating high-accuracy positioning
   - Construction technology developers requiring centimeter GPS
 common:
+  - type: AgenticAccess
+    url: agentic-access/trimble-navigation-agentic-access.yml
   - type: TrustCenter
     url: security/trimble-navigation-trust-center.yml
   - type: DomainSecurity
