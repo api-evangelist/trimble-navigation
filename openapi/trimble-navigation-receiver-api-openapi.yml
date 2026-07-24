@@ -1,0 +1,97 @@
+openapi: 3.0.3
+info:
+  title: Trimble Mobile Manager Catalyst Receiver API
+  description: The Trimble Mobile Manager (TMM) API provides developer interfaces for integrating high-accuracy GNSS positioning from connected Trimble receivers into custom mobile applications. Offers a local REST API for system information and WebSocket stream initiation, plus real-time GNSS position delivery via WebSocket. Supports Trimble Catalyst DA2, R580, R780, R12i, R980, and SP100 receivers. Runs locally on Android or iOS devices where Trimble Mobile Manager is installed.
+  version: 1.0.0
+  contact:
+    url: https://developer.trimble.com/docs/mobile-manager/
+servers:
+- url: http://localhost:{apiPort}
+  description: Local Trimble Mobile Manager API server (running on device)
+  variables:
+    apiPort:
+      default: '8080'
+      description: API port returned by tmmInfo endpoint
+security:
+- basicAuth: []
+tags:
+- name: Receiver
+paths:
+  /api/v1/receiver/info:
+    get:
+      operationId: getReceiverInfo
+      summary: Get Receiver Information
+      description: Returns information about the currently connected GNSS receiver including model, serial number, firmware version, and connection status.
+      tags:
+      - Receiver
+      responses:
+        '200':
+          description: Receiver information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReceiverInfo'
+        '401':
+          description: Unauthorized
+  /api/v1/receiver/status:
+    get:
+      operationId: getReceiverStatus
+      summary: Get Receiver Status
+      description: Returns current status of the connected GNSS receiver.
+      tags:
+      - Receiver
+      responses:
+        '200':
+          description: Receiver status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReceiverStatus'
+components:
+  schemas:
+    ReceiverInfo:
+      type: object
+      description: Connected GNSS receiver information
+      properties:
+        model:
+          type: string
+          description: Receiver model name (e.g., R12i, Catalyst DA2)
+        serialNumber:
+          type: string
+          description: Receiver serial number
+        firmwareVersion:
+          type: string
+          description: Receiver firmware version
+        connectionType:
+          type: string
+          enum:
+          - Bluetooth
+          - USB
+          - WiFi
+          - Internal
+          description: Connection method to the receiver
+    ReceiverStatus:
+      type: object
+      description: Current GNSS receiver status
+      properties:
+        connected:
+          type: boolean
+        batteryLevel:
+          type: integer
+          description: Battery percentage (0-100)
+        gnssSignalStrength:
+          type: string
+          enum:
+          - None
+          - Poor
+          - Fair
+          - Good
+          - Excellent
+        trackingGnss:
+          type: boolean
+          description: Whether receiver is actively tracking GNSS signals
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Access code generated using SHA256 hash of (applicationId + currentUTCTime), Base64 encoded. Valid for 1 second only. Must be regenerated per request.

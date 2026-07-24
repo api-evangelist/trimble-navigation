@@ -1,0 +1,64 @@
+openapi: 3.0.3
+info:
+  title: Trimble Mobile Manager Catalyst Positioning API
+  description: The Trimble Mobile Manager (TMM) API provides developer interfaces for integrating high-accuracy GNSS positioning from connected Trimble receivers into custom mobile applications. Offers a local REST API for system information and WebSocket stream initiation, plus real-time GNSS position delivery via WebSocket. Supports Trimble Catalyst DA2, R580, R780, R12i, R980, and SP100 receivers. Runs locally on Android or iOS devices where Trimble Mobile Manager is installed.
+  version: 1.0.0
+  contact:
+    url: https://developer.trimble.com/docs/mobile-manager/
+servers:
+- url: http://localhost:{apiPort}
+  description: Local Trimble Mobile Manager API server (running on device)
+  variables:
+    apiPort:
+      default: '8080'
+      description: API port returned by tmmInfo endpoint
+security:
+- basicAuth: []
+tags:
+- name: Positioning
+paths:
+  /api/v1/positionStream:
+    get:
+      operationId: startPositionStream
+      summary: Start Position Stream
+      description: Initiates position streaming from the connected GNSS receiver. Returns the WebSocket port number for connecting to the position stream. After calling this endpoint, open a WebSocket connection to ws://localhost:{port} to receive real-time GNSS position data.
+      tags:
+      - Positioning
+      parameters:
+      - name: format
+        in: query
+        schema:
+          type: string
+          enum:
+          - locationV1
+          - locationV2
+          default: locationV2
+        description: Position data format version. locationV2 includes extended fields for IMU orientation, TIP positions, and reference frame data.
+      responses:
+        '200':
+          description: WebSocket port for position stream
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PositionStreamResponse'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    PositionStreamResponse:
+      type: object
+      description: Response containing WebSocket port for position streaming
+      required:
+      - port
+      properties:
+        port:
+          type: integer
+          description: WebSocket port to connect to for position stream
+        format:
+          type: string
+          description: Position format version that will be streamed
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Access code generated using SHA256 hash of (applicationId + currentUTCTime), Base64 encoded. Valid for 1 second only. Must be regenerated per request.

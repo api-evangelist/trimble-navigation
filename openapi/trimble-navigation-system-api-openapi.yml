@@ -1,0 +1,67 @@
+openapi: 3.0.3
+info:
+  title: Trimble Mobile Manager Catalyst System API
+  description: The Trimble Mobile Manager (TMM) API provides developer interfaces for integrating high-accuracy GNSS positioning from connected Trimble receivers into custom mobile applications. Offers a local REST API for system information and WebSocket stream initiation, plus real-time GNSS position delivery via WebSocket. Supports Trimble Catalyst DA2, R580, R780, R12i, R980, and SP100 receivers. Runs locally on Android or iOS devices where Trimble Mobile Manager is installed.
+  version: 1.0.0
+  contact:
+    url: https://developer.trimble.com/docs/mobile-manager/
+servers:
+- url: http://localhost:{apiPort}
+  description: Local Trimble Mobile Manager API server (running on device)
+  variables:
+    apiPort:
+      default: '8080'
+      description: API port returned by tmmInfo endpoint
+security:
+- basicAuth: []
+tags:
+- name: System
+paths:
+  /api/v1/tmmInfo:
+    get:
+      operationId: getTmmInfo
+      summary: Get TMM System Information
+      description: Retrieve system information about the connected Trimble Mobile Manager instance, including the API port, WebSocket ports, connected receiver details, and version information.
+      tags:
+      - System
+      responses:
+        '200':
+          description: TMM system information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TmmInfo'
+        '401':
+          description: Unauthorized - invalid access code
+components:
+  schemas:
+    TmmInfo:
+      type: object
+      description: Trimble Mobile Manager system information
+      properties:
+        version:
+          type: string
+          description: TMM application version
+        apiPort:
+          type: integer
+          description: REST API port number
+        v1SocketPort:
+          type: integer
+          description: WebSocket port for v1 basic position stream
+        v2SocketPort:
+          type: integer
+          description: WebSocket port for v2 extended position stream (registered apps)
+        receiverConnected:
+          type: boolean
+          description: Whether a GNSS receiver is currently connected
+        platform:
+          type: string
+          enum:
+          - Android
+          - iOS
+          description: Platform TMM is running on
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Access code generated using SHA256 hash of (applicationId + currentUTCTime), Base64 encoded. Valid for 1 second only. Must be regenerated per request.

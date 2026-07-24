@@ -1,0 +1,88 @@
+openapi: 3.0.3
+info:
+  title: Trimble Mobile Manager Catalyst API
+  description: The Trimble Mobile Manager (TMM) API provides developer interfaces for integrating high-accuracy GNSS positioning from connected Trimble receivers into custom mobile applications. Offers a local REST API for system information and WebSocket stream initiation, plus real-time GNSS position delivery via WebSocket. Supports Trimble Catalyst DA2, R580, R780, R12i, R980, and SP100 receivers. Runs locally on Android or iOS devices where Trimble Mobile Manager is installed.
+  version: 1.0.0
+  contact:
+    url: https://developer.trimble.com/docs/mobile-manager/
+servers:
+- url: http://localhost:{apiPort}
+  description: Local Trimble Mobile Manager API server (running on device)
+  variables:
+    apiPort:
+      default: '8080'
+      description: API port returned by tmmInfo endpoint
+security:
+- basicAuth: []
+tags:
+- name: Catalyst
+paths:
+  /api/v1/catalyst/licenses:
+    get:
+      operationId: getCatalystLicenses
+      summary: Get Catalyst Licenses
+      description: Returns available Trimble Catalyst licenses for the connected DA2 receiver.
+      tags:
+      - Catalyst
+      responses:
+        '200':
+          description: Available Catalyst licenses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CatalystLicense'
+  /api/v1/catalyst/licenses/activate:
+    post:
+      operationId: activateCatalystLicense
+      summary: Activate Catalyst License
+      description: Activate a Trimble Catalyst On Demand license to enable precision corrections for the DA2 receiver.
+      tags:
+      - Catalyst
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - licenseId
+              properties:
+                licenseId:
+                  type: string
+                  description: Catalyst license identifier
+      responses:
+        '200':
+          description: License activated
+components:
+  schemas:
+    CatalystLicense:
+      type: object
+      description: Trimble Catalyst positioning accuracy license
+      properties:
+        id:
+          type: string
+          description: License identifier
+        type:
+          type: string
+          enum:
+          - Decimeter
+          - Centimeter
+          - Sub-Foot
+          - Sub-Meter
+          description: Accuracy level provided
+        status:
+          type: string
+          enum:
+          - Available
+          - Active
+          - Expired
+        expiresAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Access code generated using SHA256 hash of (applicationId + currentUTCTime), Base64 encoded. Valid for 1 second only. Must be regenerated per request.

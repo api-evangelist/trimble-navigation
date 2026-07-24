@@ -1,0 +1,117 @@
+openapi: 3.0.3
+info:
+  title: Trimble Mobile Manager Catalyst Corrections API
+  description: The Trimble Mobile Manager (TMM) API provides developer interfaces for integrating high-accuracy GNSS positioning from connected Trimble receivers into custom mobile applications. Offers a local REST API for system information and WebSocket stream initiation, plus real-time GNSS position delivery via WebSocket. Supports Trimble Catalyst DA2, R580, R780, R12i, R980, and SP100 receivers. Runs locally on Android or iOS devices where Trimble Mobile Manager is installed.
+  version: 1.0.0
+  contact:
+    url: https://developer.trimble.com/docs/mobile-manager/
+servers:
+- url: http://localhost:{apiPort}
+  description: Local Trimble Mobile Manager API server (running on device)
+  variables:
+    apiPort:
+      default: '8080'
+      description: API port returned by tmmInfo endpoint
+security:
+- basicAuth: []
+tags:
+- name: Corrections
+paths:
+  /api/v1/corrections/status:
+    get:
+      operationId: getCorrectionsStatus
+      summary: Get Corrections Status
+      description: Returns the current status of GNSS correction services being applied to the receiver (e.g., RTX, RTK, SBAS).
+      tags:
+      - Corrections
+      responses:
+        '200':
+          description: Corrections status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CorrectionsStatus'
+  /api/v1/corrections/configure:
+    post:
+      operationId: configureCorrections
+      summary: Configure Corrections
+      description: Configure the GNSS correction source for the connected receiver. Supports CenterPoint RTX, SBAS, and custom NTRIP mountpoints.
+      tags:
+      - Corrections
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CorrectionsConfig'
+      responses:
+        '200':
+          description: Corrections configured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CorrectionsStatus'
+        '400':
+          description: Invalid configuration
+components:
+  schemas:
+    CorrectionsStatus:
+      type: object
+      description: GNSS correction service status
+      properties:
+        type:
+          type: string
+          enum:
+          - None
+          - SBAS
+          - RTX
+          - RTK
+          - NTRIP
+          - DGNSS
+          description: Active correction type
+        status:
+          type: string
+          enum:
+          - Disconnected
+          - Connecting
+          - Connected
+          - Converging
+          - Active
+        accuracy:
+          type: string
+          description: Achievable accuracy with current corrections
+        provider:
+          type: string
+          description: Correction service provider name
+    CorrectionsConfig:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - RTX
+          - RTK
+          - SBAS
+          - NTRIP
+          - None
+          description: Correction service type to configure
+        ntripHost:
+          type: string
+          description: NTRIP caster host (required for NTRIP type)
+        ntripPort:
+          type: integer
+          description: NTRIP caster port
+        ntripMountpoint:
+          type: string
+          description: NTRIP mountpoint
+        ntripUsername:
+          type: string
+        ntripPassword:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Access code generated using SHA256 hash of (applicationId + currentUTCTime), Base64 encoded. Valid for 1 second only. Must be regenerated per request.
