@@ -8,7 +8,20 @@ description: >-
   via the Trimble Precision SDK, and geospatial data services. The positioning technology integrates GPS, laser,
   optical, and inertial technologies to deliver centimeter-level accuracy for professional applications.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/trimble-navigation.png
 tags:
   - GPS
   - GNSS
@@ -23,44 +36,87 @@ created: '2026-05-03'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: trimble-navigation:trimble-mobile-manager
-    name: Trimble Mobile Manager API
-    description: >-
-      The Trimble Mobile Manager (TMM) API provides developer interfaces for integrating high-accuracy GNSS positioning
-      from connected Trimble receivers into custom mobile applications. Offers a local REST API for configuration and a
-      WebSocket stream for real-time GNSS position delivery. Supports Trimble Catalyst DA2, R580, R780, R12i, R980, and
-      SP100 receivers. Abstracts receiver hardware to enable forward-compatible precision positioning apps.
-    humanURL: https://developer.trimble.com/docs/mobile-manager/
-    tags:
-      - GPS
-      - GNSS
-      - Positioning
-      - Surveying
-      - Mobile
-      - WebSocket
-    properties:
-      - type: Documentation
-        url: https://developer.trimble.com/docs/mobile-manager/
-      - type: GettingStarted
-        url: https://developer.trimble.com/docs/mobile-manager/guides/integrate/
-      - type: OpenAPI
-        url: openapi/trimble-mobile-manager-openapi.yml
-  - aid: trimble-navigation:trimble-positioning-services
-    name: Trimble Positioning Services API
-    description: >-
-      The Trimble Advanced Positioning (TAP) Store API is a REST-based eCommerce API for purchasing and managing Trimble
-      positioning service subscriptions including RTX correction services. Enables automated provisioning of
-      high-accuracy correction subscriptions for fleet and field deployments.
-    humanURL: https://www.trimble.com/en/developer/docs
-    tags:
-      - GPS
-      - GNSS Corrections
-      - RTX
-      - Positioning Services
-      - Subscriptions
-    properties:
-      - type: Documentation
-        url: https://www.trimble.com/en/developer/docs
+- aid: trimble-navigation:trimble-positioning-services
+  name: Trimble Positioning Services API
+  description: >-
+    The Trimble Advanced Positioning (TAP) Store API is a REST-based eCommerce API for purchasing and
+    managing Trimble positioning service subscriptions including RTX correction services. Enables automated
+    provisioning of high-accuracy correction subscriptions for fleet and field deployments.
+  humanURL: https://www.trimble.com/en/developer/docs
+  tags:
+  - GPS
+  - GNSS Corrections
+  - RTX
+  - Positioning Services
+  - Subscriptions
+  properties:
+  - type: Documentation
+    url: https://www.trimble.com/en/developer/docs
+- aid: trimble-navigation:trimble-navigation-catalyst-api
+  name: Trimble Navigation Catalyst API
+  description: The Catalyst API from Trimble Navigation — 2 operation(s) for catalyst.
+  humanURL: https://developer.trimble.com/docs/mobile-manager/
+  tags:
+  - Catalyst
+  properties:
+  - type: OpenAPI
+    url: openapi/trimble-navigation-catalyst-api-openapi.yml
+  - type: Documentation
+    url: https://developer.trimble.com/docs/mobile-manager/
+  - type: GettingStarted
+    url: https://developer.trimble.com/docs/mobile-manager/guides/integrate/
+- aid: trimble-navigation:trimble-navigation-corrections-api
+  name: Trimble Navigation Corrections API
+  description: The Corrections API from Trimble Navigation — 2 operation(s) for corrections.
+  humanURL: https://developer.trimble.com/docs/mobile-manager/
+  tags:
+  - Corrections
+  properties:
+  - type: OpenAPI
+    url: openapi/trimble-navigation-corrections-api-openapi.yml
+  - type: Documentation
+    url: https://developer.trimble.com/docs/mobile-manager/
+  - type: GettingStarted
+    url: https://developer.trimble.com/docs/mobile-manager/guides/integrate/
+- aid: trimble-navigation:trimble-navigation-positioning-api
+  name: Trimble Navigation Positioning API
+  description: The Positioning API from Trimble Navigation — 1 operation(s) for positioning.
+  humanURL: https://developer.trimble.com/docs/mobile-manager/
+  tags:
+  - Positioning
+  properties:
+  - type: OpenAPI
+    url: openapi/trimble-navigation-positioning-api-openapi.yml
+  - type: Documentation
+    url: https://developer.trimble.com/docs/mobile-manager/
+  - type: GettingStarted
+    url: https://developer.trimble.com/docs/mobile-manager/guides/integrate/
+- aid: trimble-navigation:trimble-navigation-receiver-api
+  name: Trimble Navigation Receiver API
+  description: The Receiver API from Trimble Navigation — 2 operation(s) for receiver.
+  humanURL: https://developer.trimble.com/docs/mobile-manager/
+  tags:
+  - Receiver
+  properties:
+  - type: OpenAPI
+    url: openapi/trimble-navigation-receiver-api-openapi.yml
+  - type: Documentation
+    url: https://developer.trimble.com/docs/mobile-manager/
+  - type: GettingStarted
+    url: https://developer.trimble.com/docs/mobile-manager/guides/integrate/
+- aid: trimble-navigation:trimble-navigation-system-api
+  name: Trimble Navigation System API
+  description: The System API from Trimble Navigation — 1 operation(s) for system.
+  humanURL: https://developer.trimble.com/docs/mobile-manager/
+  tags:
+  - System
+  properties:
+  - type: OpenAPI
+    url: openapi/trimble-navigation-system-api-openapi.yml
+  - type: Documentation
+    url: https://developer.trimble.com/docs/mobile-manager/
+  - type: GettingStarted
+    url: https://developer.trimble.com/docs/mobile-manager/guides/integrate/
 features:
   - Real-time GNSS position streaming via WebSocket
   - Receiver configuration via REST API
