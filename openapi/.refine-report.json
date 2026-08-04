@@ -1,0 +1,22 @@
+{
+  "provider": "trimble-navigation",
+  "sources": [
+    "trimble-navigation-catalyst-api-openapi.yml",
+    "trimble-navigation-corrections-api-openapi.yml",
+    "trimble-navigation-positioning-api-openapi.yml",
+    "trimble-navigation-receiver-api-openapi.yml",
+    "trimble-navigation-system-api-openapi.yml"
+  ],
+  "outputs": [
+    "trimble-navigation-catalyst-api-openapi.yml",
+    "trimble-navigation-corrections-api-openapi.yml",
+    "trimble-navigation-positioning-api-openapi.yml",
+    "trimble-navigation-receiver-api-openapi.yml",
+    "trimble-navigation-system-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
