@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trimble Mobile Manager Catalyst Corrections API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Corrections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Corrections Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:{apiPort}/api/v1/corrections/status"
+          },
+          "docs": "Returns the current status of GNSS correction services being applied to the receiver (e.g., RTX, RTK, SBAS)."
+        },
+        {
+          "info": {
+            "name": "Configure Corrections",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:{apiPort}/api/v1/corrections/configure",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configure the GNSS correction source for the connected receiver. Supports CenterPoint RTX, SBAS, and custom NTRIP mountpoints."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trimble Mobile Manager Catalyst API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Catalyst",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Catalyst Licenses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:{apiPort}/api/v1/catalyst/licenses"
+          },
+          "docs": "Returns available Trimble Catalyst licenses for the connected DA2 receiver."
+        },
+        {
+          "info": {
+            "name": "Activate Catalyst License",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:{apiPort}/api/v1/catalyst/licenses/activate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Activate a Trimble Catalyst On Demand license to enable precision corrections for the DA2 receiver."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trimble Mobile Manager Catalyst Receiver API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Receiver",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Receiver Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:{apiPort}/api/v1/receiver/info"
+          },
+          "docs": "Returns information about the currently connected GNSS receiver including model, serial number, firmware version, and connection status."
+        },
+        {
+          "info": {
+            "name": "Get Receiver Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:{apiPort}/api/v1/receiver/status"
+          },
+          "docs": "Returns current status of the connected GNSS receiver."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

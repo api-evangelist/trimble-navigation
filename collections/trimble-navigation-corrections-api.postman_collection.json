@@ -1,0 +1,328 @@
+{
+  "item": [
+    {
+      "id": "12e85db2-fda6-4e79-a3c3-a5e8f8610732",
+      "name": "Corrections",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2ec891f1-9d8c-4be8-b447-65ea5d6122a8",
+          "name": "Get Corrections Status",
+          "request": {
+            "name": "Get Corrections Status",
+            "description": {
+              "content": "Returns the current status of GNSS correction services being applied to the receiver (e.g., RTX, RTK, SBAS).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "corrections",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "API port returned by tmmInfo endpoint",
+                  "type": "any",
+                  "value": "{{apiPort}}",
+                  "key": "apiPort"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "703a1e6c-44ee-4284-9c34-b17592eabab2",
+              "name": "Corrections status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "corrections",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API port returned by tmmInfo endpoint",
+                      "type": "any",
+                      "value": "{{apiPort}}",
+                      "key": "apiPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"RTK\",\n  \"status\": \"Active\",\n  \"accuracy\": \"string\",\n  \"provider\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee1144ec-65bc-4248-8b84-adc9fb83bb3f",
+          "name": "Configure Corrections",
+          "request": {
+            "name": "Configure Corrections",
+            "description": {
+              "content": "Configure the GNSS correction source for the connected receiver. Supports CenterPoint RTX, SBAS, and custom NTRIP mountpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "corrections",
+                "configure"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "API port returned by tmmInfo endpoint",
+                  "type": "any",
+                  "value": "{{apiPort}}",
+                  "key": "apiPort"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"ntripHost\": \"<string>\",\n  \"ntripPort\": \"<integer>\",\n  \"ntripMountpoint\": \"<string>\",\n  \"ntripUsername\": \"<string>\",\n  \"ntripPassword\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "33fa263e-cab3-4dd6-ae86-b6994aee05c5",
+              "name": "Corrections configured",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "corrections",
+                    "configure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API port returned by tmmInfo endpoint",
+                      "type": "any",
+                      "value": "{{apiPort}}",
+                      "key": "apiPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"ntripHost\": \"<string>\",\n  \"ntripPort\": \"<integer>\",\n  \"ntripMountpoint\": \"<string>\",\n  \"ntripUsername\": \"<string>\",\n  \"ntripPassword\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"RTK\",\n  \"status\": \"Active\",\n  \"accuracy\": \"string\",\n  \"provider\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2bd04fc1-ae0f-4d02-9fc0-a865c710575a",
+              "name": "Invalid configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "corrections",
+                    "configure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "API port returned by tmmInfo endpoint",
+                      "type": "any",
+                      "value": "{{apiPort}}",
+                      "key": "apiPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"ntripHost\": \"<string>\",\n  \"ntripPort\": \"<integer>\",\n  \"ntripMountpoint\": \"<string>\",\n  \"ntripUsername\": \"<string>\",\n  \"ntripPassword\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "API port returned by tmmInfo endpoint",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "8080",
+      "key": "apiPort"
+    },
+    {
+      "type": "string",
+      "value": "http://localhost:{{apiPort}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "eddb6bae-61cd-43b6-a9f6-bf7f8ab53b4b",
+    "name": "Trimble Mobile Manager Catalyst Corrections API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Trimble Mobile Manager (TMM) API provides developer interfaces for integrating high-accuracy GNSS positioning from connected Trimble receivers into custom mobile applications. Offers a local REST API for system information and WebSocket stream initiation, plus real-time GNSS position delivery via WebSocket. Supports Trimble Catalyst DA2, R580, R780, R12i, R980, and SP100 receivers. Runs locally on Android or iOS devices where Trimble Mobile Manager is installed.",
+      "type": "text/plain"
+    }
+  }
+}

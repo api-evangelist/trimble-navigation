@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trimble Mobile Manager Catalyst Positioning API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Positioning",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start Position Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:{apiPort}/api/v1/positionStream",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Position data format version. locationV2 includes extended fields for IMU orientation, TIP positions, and reference frame data."
+              }
+            ]
+          },
+          "docs": "Initiates position streaming from the connected GNSS receiver. Returns the WebSocket port number for connecting to the position stream. After calling this endpoint, open a WebSocket connection to ws://localhost:{port} to receive real-time GNSS position data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

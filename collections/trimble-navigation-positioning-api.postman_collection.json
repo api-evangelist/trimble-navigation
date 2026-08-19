@@ -1,0 +1,215 @@
+{
+  "item": [
+    {
+      "id": "49ebe7a6-39d0-4821-b732-fed48d346fc8",
+      "name": "Positioning",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6f9bea3f-255b-4508-8573-449fb9f2e005",
+          "name": "Start Position Stream",
+          "request": {
+            "name": "Start Position Stream",
+            "description": {
+              "content": "Initiates position streaming from the connected GNSS receiver. Returns the WebSocket port number for connecting to the position stream. After calling this endpoint, open a WebSocket connection to ws://localhost:{port} to receive real-time GNSS position data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "positionStream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "locationV2",
+                  "description": "Position data format version. locationV2 includes extended fields for IMU orientation, TIP positions, and reference frame data."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "API port returned by tmmInfo endpoint",
+                  "type": "any",
+                  "value": "{{apiPort}}",
+                  "key": "apiPort"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13e82910-ae7c-49b6-8c24-996e8693bce5",
+              "name": "WebSocket port for position stream",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "positionStream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "locationV2"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "API port returned by tmmInfo endpoint",
+                      "type": "any",
+                      "value": "{{apiPort}}",
+                      "key": "apiPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"port\": 8986,\n  \"format\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "873a16e0-fe19-4a7d-bb33-acbdaef3add9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "positionStream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "locationV2"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "API port returned by tmmInfo endpoint",
+                      "type": "any",
+                      "value": "{{apiPort}}",
+                      "key": "apiPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "API port returned by tmmInfo endpoint",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "8080",
+      "key": "apiPort"
+    },
+    {
+      "type": "string",
+      "value": "http://localhost:{{apiPort}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d6ae33c0-5097-4d95-a214-9d0c36c61a64",
+    "name": "Trimble Mobile Manager Catalyst Positioning API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Trimble Mobile Manager (TMM) API provides developer interfaces for integrating high-accuracy GNSS positioning from connected Trimble receivers into custom mobile applications. Offers a local REST API for system information and WebSocket stream initiation, plus real-time GNSS position delivery via WebSocket. Supports Trimble Catalyst DA2, R580, R780, R12i, R980, and SP100 receivers. Runs locally on Android or iOS devices where Trimble Mobile Manager is installed.",
+      "type": "text/plain"
+    }
+  }
+}
