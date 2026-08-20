@@ -48,6 +48,12 @@ apis:
   - GNSS Corrections
   - RTX
   - Positioning Services
+  - Subscription
+  tags_raw:
+  - GPS
+  - GNSS Corrections
+  - RTX
+  - Positioning Services
   - Subscriptions
   properties:
   - type: Documentation
