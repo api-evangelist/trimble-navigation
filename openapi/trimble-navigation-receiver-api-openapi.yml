@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Trimble Mobile Manager Catalyst Receiver API
   description: The Trimble Mobile Manager (TMM) API provides developer interfaces for integrating high-accuracy GNSS positioning from connected Trimble receivers into custom mobile applications. Offers a local REST API for system information and WebSocket stream initiation, plus real-time GNSS position delivery via WebSocket. Supports Trimble Catalyst DA2, R580, R780, R12i, R980, and SP100 receivers. Runs locally on Android or iOS devices where Trimble Mobile Manager is installed.
@@ -49,6 +49,26 @@ paths:
                 $ref: '#/components/schemas/ReceiverStatus'
 components:
   schemas:
+    ReceiverStatus:
+      type: object
+      description: Current GNSS receiver status
+      properties:
+        connected:
+          type: boolean
+        batteryLevel:
+          type: integer
+          description: Battery percentage (0-100)
+        gnssSignalStrength:
+          type: string
+          enum:
+          - None
+          - Poor
+          - Fair
+          - Good
+          - Excellent
+        trackingGnss:
+          type: boolean
+          description: Whether receiver is actively tracking GNSS signals
     ReceiverInfo:
       type: object
       description: Connected GNSS receiver information
@@ -70,26 +90,6 @@ components:
           - WiFi
           - Internal
           description: Connection method to the receiver
-    ReceiverStatus:
-      type: object
-      description: Current GNSS receiver status
-      properties:
-        connected:
-          type: boolean
-        batteryLevel:
-          type: integer
-          description: Battery percentage (0-100)
-        gnssSignalStrength:
-          type: string
-          enum:
-          - None
-          - Poor
-          - Fair
-          - Good
-          - Excellent
-        trackingGnss:
-          type: boolean
-          description: Whether receiver is actively tracking GNSS signals
   securitySchemes:
     basicAuth:
       type: http

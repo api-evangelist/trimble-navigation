@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Trimble Mobile Manager Catalyst Corrections API
   description: The Trimble Mobile Manager (TMM) API provides developer interfaces for integrating high-accuracy GNSS positioning from connected Trimble receivers into custom mobile applications. Offers a local REST API for system information and WebSocket stream initiation, plus real-time GNSS position delivery via WebSocket. Supports Trimble Catalyst DA2, R580, R780, R12i, R980, and SP100 receivers. Runs locally on Android or iOS devices where Trimble Mobile Manager is installed.
@@ -55,6 +55,33 @@ paths:
           description: Invalid configuration
 components:
   schemas:
+    CorrectionsConfig:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - RTX
+          - RTK
+          - SBAS
+          - NTRIP
+          - None
+          description: Correction service type to configure
+        ntripHost:
+          type: string
+          description: NTRIP caster host (required for NTRIP type)
+        ntripPort:
+          type: integer
+          description: NTRIP caster port
+        ntripMountpoint:
+          type: string
+          description: NTRIP mountpoint
+        ntripUsername:
+          type: string
+        ntripPassword:
+          type: string
     CorrectionsStatus:
       type: object
       description: GNSS correction service status
@@ -83,33 +110,6 @@ components:
         provider:
           type: string
           description: Correction service provider name
-    CorrectionsConfig:
-      type: object
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          enum:
-          - RTX
-          - RTK
-          - SBAS
-          - NTRIP
-          - None
-          description: Correction service type to configure
-        ntripHost:
-          type: string
-          description: NTRIP caster host (required for NTRIP type)
-        ntripPort:
-          type: integer
-          description: NTRIP caster port
-        ntripMountpoint:
-          type: string
-          description: NTRIP mountpoint
-        ntripUsername:
-          type: string
-        ntripPassword:
-          type: string
   securitySchemes:
     basicAuth:
       type: http
