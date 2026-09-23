@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Trimble Mobile Manager Catalyst Positioning API
+  title: Trimble Mobile Manager Positioning API
   description: The Trimble Mobile Manager (TMM) API provides developer interfaces for integrating high-accuracy GNSS positioning from connected Trimble receivers into custom mobile applications. Offers a local REST API for system information and WebSocket stream initiation, plus real-time GNSS position delivery via WebSocket. Supports Trimble Catalyst DA2, R580, R780, R12i, R980, and SP100 receivers. Runs locally on Android or iOS devices where Trimble Mobile Manager is installed.
   version: 1.0.0
   contact:

@@ -1,11 +1,7 @@
 {
   "provider": "trimble-navigation",
   "sources": [
-    "trimble-navigation-catalyst-api-openapi.yml",
-    "trimble-navigation-corrections-api-openapi.yml",
-    "trimble-navigation-positioning-api-openapi.yml",
-    "trimble-navigation-receiver-api-openapi.yml",
-    "trimble-navigation-system-api-openapi.yml"
+    "_original/trimble-mobile-manager-openapi.yml"
   ],
   "outputs": [
     "trimble-navigation-catalyst-api-openapi.yml",
@@ -18,12 +14,20 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "trimble-navigation-catalyst-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "trimble-navigation-corrections-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "trimble-navigation-positioning-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "trimble-navigation-receiver-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "trimble-navigation-system-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "trimble-mobile-manager-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "trimble-mobile-manager-openapi.yml: declared missing tag: Catalyst",
+    "trimble-mobile-manager-openapi.yml: declared missing tag: Corrections",
+    "trimble-mobile-manager-openapi.yml: declared missing tag: Positioning",
+    "trimble-mobile-manager-openapi.yml: declared missing tag: Receiver",
+    "trimble-mobile-manager-openapi.yml: declared missing tag: System",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "trimble-navigation-catalyst-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trimble-navigation-corrections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trimble-navigation-positioning-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trimble-navigation-receiver-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trimble-navigation-system-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,7 +1,9 @@
 ---
 title: Builder business and will extend Trimble's ability to provide ...
 url: https://www.facebook.com/TrimbleCorporate/posts/more-big-news-happened-todaywe-are-so-excited-to-announce-the-newest-member-of-t/1919754298098753/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Trimble Navigation" press release artificial intelligence'
 position: 3
 source: serpapi-google

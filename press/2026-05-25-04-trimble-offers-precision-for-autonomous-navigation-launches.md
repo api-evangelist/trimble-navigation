@@ -1,7 +1,9 @@
 ---
 title: Trimble offers precision for autonomous navigation, launches ...
 url: https://www.automatedwarehouseonline.com/trimble-offers-precision-for-autonomous-navigation-launches-agco-joint-venture/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Trimble Navigation" press release artificial intelligence'
 position: 4
 source: serpapi-google

@@ -1,7 +1,9 @@
 ---
 title: Trimble to Acquire Document Crunch to Add AI-Powered ...
 url: https://www.barchart.com/story/news/1110119/trimble-to-acquire-document-crunch-to-add-ai-powered-risk-management-and-document-compliance-to-trimble-construction-one-project-delivery-ecosystem
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Trimble Navigation" press release artificial intelligence'
 position: 2
 source: serpapi-google
